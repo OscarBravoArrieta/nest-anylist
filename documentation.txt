@@ -1,0 +1,87 @@
+ 1. Uninstalling prettier:
+    npm uninstall prettier eslint-config-prettier eslint-plugin-prettier
+
+ 2. Instaling Graphql
+    npm i @nestjs/graphql @nestjs/apollo @apollo/server @as-integrations/express5 graphql
+
+ 3. Other way to Resolving error: Query root type must be provided.
+    nest generate res items --no-spec
+
+    ✔ What transport layer do you use? GraphQL (code first)
+    ✔ Would you like to generate CRUD entry points? Yes
+
+    After creation of a res, the schema.gpl file is created
+
+ 4. Docker
+    run: docker-compose up
+    down: docker system prune -a
+
+ 5. Especificate the actions in the readme.md
+
+ 6. Configuring environment variables
+    npm i --save @nestjs/config
+    update app.modue: ConfigModule.forRoot()
+
+ 7. TypePrm Integration
+    npm install --save @nestjs/typeorm typeorm pg
+
+    note: pg is te driver to manage postgres
+
+ 8. Configurate item.entity.ts
+    You needs to especify in the module (items.module.ts) the necesarys entitys
+     imports: [
+         TypeOrmModule.forFeature([Item])
+     ]
+
+ 9. create-item.input.ts and update.item.input.ts are into dto folder
+    Is recomended to create in the folder dto, a folder input and a folder args and reorder your files
+
+ 10. npm install class-validator class-transformer
+     update main.ts
+
+ 11. nest generate res users --no-spec
+      ✔ What transport layer do you use? GraphQL (code first)
+      ✔ Would you like to generate CRUD entry points? Yes
+
+ 12. nest generate resource auth --no-spec
+   ✔ What transport layer do you use? GraphQL (code first)
+   ✔ Would you like to generate CRUD entry points? No
+
+ 13. The user will be created in the table user. The method for this will be created in the userService
+
+ 14. Create a method in the userService: handleDBErrors
+
+ 15. Encrypting the password
+    npm install bcrypt
+    npm i --save-dev @types/bcrypt
+
+ 16. npm install @nestjs/passport passport
+     npm install @nestjs/jwt passport-jwt
+     npm install --save-dev @types/passport-jwt
+
+     Update auth.modue
+         ConfigModule,
+         PassportModule.register({ defaultStrategy: 'jwt' }),
+         JwtModule.registerAsync({
+             imports: [ConfigModule],
+             inject: [ConfigService],
+
+             useFactory: (configService: ConfigService) => ({
+             secret: configService.get<string>('JWT_SECRET'),
+             signOptions: { 
+                 expiresIn: '4h' //configService.get<string>('JWT_EXPIRATION') 
+             }
+                 
+             })
+         }),
+
+ 16. Make a new folder called strategies into auth folder. To manage a file by every strategie
+
+
+
+Notes:
+import ID
+
+import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql'
+
+
