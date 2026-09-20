@@ -55,9 +55,9 @@
     //   return this.usersService.remove(id);
     // }
 
-     @Mutation(() => User)
+     @Mutation(() => User, { name: 'blockUser' })
 
-     blockUser(@Args('id', { type: () => ID }) id: string) {
+     blockUser(@Args('id', { type: () => ID }) id: string, @CurrentUser([ValidRoles.admin]) user: User) {
 
          return this.usersService.blockUser(id);
          

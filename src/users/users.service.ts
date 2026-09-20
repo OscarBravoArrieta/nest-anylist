@@ -109,8 +109,11 @@
 
      async blockUser(id: string): Promise<User> {
 
-         throw new Error('Method not implemented.')
+         const userToBlock = await this.findOneById(id)
 
+         userToBlock.isActive = false
+
+         return await this.usersRepository.save(userToBlock)
      }
 
      //--------------------------------------------------------------------------------------------
@@ -135,5 +138,5 @@
 
      }
 
-     //--------------------------------------------------------------------------------------------
+     //-------------------------------------------------------------------------------------------- DB_PASSWORD=MySecr3tPassw0rd56543
 }
