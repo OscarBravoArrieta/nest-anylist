@@ -85,3 +85,11 @@ import ID
 import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql'
 
 
+DB_PASSWORD=MySecr3tPassw0rd56543
+DB_NAME=AnyList
+DB_HOST=localhost
+DB_PORT='5432:5432'
+DB_USERNAME=admin
+
+JWT_SECRET=JWTSecretKey1234567890
+JWT_EXPIRATION=2400s

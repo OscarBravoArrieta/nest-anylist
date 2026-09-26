@@ -59,7 +59,7 @@
 
      blockUser(@Args('id', { type: () => ID }) id: string, @CurrentUser([ValidRoles.admin]) user: User) {
 
-         return this.usersService.blockUser(id);
+         return this.usersService.blockUser(id, user) ;
          
      }
 

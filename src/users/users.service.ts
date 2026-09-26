@@ -39,7 +39,11 @@
 
      async findAll(roles: ValidRoles[]): Promise<User[]> {
 
-         if (roles.length === 0) return this.usersRepository.find()
+         if (roles.length === 0) return this.usersRepository.find({
+            // relations: {
+            //     lastUpdateBy: true
+            // }
+         })
 
          return this.usersRepository.createQueryBuilder()
              .andWhere('ARRAY[roles] && ARRAY[:...roles]')
@@ -107,11 +111,12 @@
     //   return `This action removes a #${id} user`
     // }
 
-     async blockUser(id: string): Promise<User> {
+     async blockUser(id: string, adminUser: User): Promise<User> {
 
          const userToBlock = await this.findOneById(id)
 
          userToBlock.isActive = false
+         userToBlock.lastUpdateBy = adminUser
 
          return await this.usersRepository.save(userToBlock)
      }
